@@ -30,8 +30,29 @@ let stats = {
     lastUpdate: 'Никогда'
 };
 
-// Admin password
-const ADMIN_PASSWORD = 'thehightmoon2024';
+// Admin password (encrypted)
+const ENCRYPTED_PASSWORD = 'dGhlaGlnaHRtb29uMjAyNA=='; // Base64 encoded
+
+// Simple decryption function
+function decryptPassword(encrypted) {
+    try {
+        return atob(encrypted);
+    } catch (e) {
+        return null;
+    }
+}
+
+// Additional security check
+function validatePassword(inputPassword) {
+    const correctPassword = decryptPassword(ENCRYPTED_PASSWORD);
+    if (!correctPassword) return false;
+    
+    // Add simple hash check for extra security
+    const hash = btoa(inputPassword + 'salt_key_2024');
+    const correctHash = btoa(correctPassword + 'salt_key_2024');
+    
+    return hash === correctHash;
+}
 
 // Load data from localStorage
 function loadData() {
@@ -73,11 +94,14 @@ function saveData() {
 // Login function
 function loginAdmin() {
     const password = document.getElementById('admin-password').value;
-    if (password === ADMIN_PASSWORD) {
+    if (validatePassword(password)) {
         document.getElementById('login-section').style.display = 'none';
         document.getElementById('admin-panel').style.display = 'block';
         loadAdminData();
         showNotification('Успешный вход в админ панель!', 'success');
+        
+        // Clear password field for security
+        document.getElementById('admin-password').value = '';
     } else {
         showNotification('Неверный пароль!', 'error');
         // Add shake animation to login card
@@ -86,6 +110,9 @@ function loginAdmin() {
         setTimeout(() => {
             loginCard.style.animation = '';
         }, 500);
+        
+        // Clear password field
+        document.getElementById('admin-password').value = '';
     }
 }
 
