@@ -241,6 +241,28 @@ body {
     transform: translateY(-2px);
 }
 
+.admin-link {
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    border-radius: 20px;
+    padding: 0.5rem 1rem !important;
+    color: white !important;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+    transition: all 0.3s ease;
+}
+
+.admin-link:hover {
+    background: linear-gradient(45deg, #ff5252, #d32f2f);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.5);
+    color: white !important;
+}
+
+.admin-link::before {
+    display: none;
+}
+
 /* Hero Section */
 .hero {
     min-height: 100vh;
@@ -970,6 +992,12 @@ body {
     .nav-link {
         padding: 0.3rem 0.8rem;
         font-size: 0.9rem;
+    }
+    
+    .admin-link {
+        padding: 0.4rem 0.8rem !important;
+        font-size: 0.8rem;
+        border-radius: 15px;
     }
     
     .logo-text {
