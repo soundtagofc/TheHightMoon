@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - The Hight Moon</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=Russo+One&family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1 class="admin-title">The Hight Moon</h1>
+            <p class="admin-subtitle">Админ Панель</p>
+        </div>
+
+        <div class="login-section" id="login-section">
+            <div class="login-card">
+                <div class="lock-icon">🔐</div>
+                <h2>Вход в систему</h2>
+                <div class="form-group">
+                    <input type="password" id="admin-password" placeholder="Введите пароль администратора">
+                </div>
+                <button class="btn btn-login" onclick="loginAdmin()">Войти</button>
+                <div class="back-link">
+                    <a href="index.html">← Вернуться на главную</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-panel" id="admin-panel" style="display: none;">
+            <div class="panel-header">
+                <h2>Управление Серверами</h2>
+                <button class="btn btn-logout" onclick="logout()">Выйти</button>
+            </div>
+
+            <div class="servers-management">
+                <div class="server-control winter-control">
+                    <div class="server-header">
+                        <div class="server-icon">❄️</div>
+                        <h3>The Winter Server</h3>
+                        <div class="server-status" id="winter-status">
+                            <span class="status-dot online"></span>
+                            <span>Онлайн</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="winter-link">Ссылка на сервер:</label>
+                        <input type="url" id="winter-link" placeholder="https://www.roblox.com/games/your-winter-server-id">
+                    </div>
+                    <div class="form-group">
+                        <label for="winter-status-select">Статус сервера:</label>
+                        <select id="winter-status-select" onchange="updateServerStatus('winter')">
+                            <option value="online">🟢 Онлайн</option>
+                            <option value="offline">🔴 Оффлайн</option>
+                            <option value="maintenance">🟡 Техработы</option>
+                            <option value="custom">✏️ Кастомный</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="winter-custom-status" style="display: none;">
+                        <label for="winter-custom-text">Кастомный статус:</label>
+                        <input type="text" id="winter-custom-text" placeholder="Введите свой статус" onchange="updateCustomStatus('winter')">
+                    </div>
+                    <div class="control-buttons">
+                        <button class="btn btn-update" onclick="updateServerLink('winter')">Обновить ссылку</button>
+                        <button class="btn btn-test" onclick="testServerLink('winter')">Тестировать</button>
+                    </div>
+                </div>
+
+                <div class="server-control summer-control">
+                    <div class="server-header">
+                        <div class="server-icon">☀️</div>
+                        <h3>The Summer Server</h3>
+                        <div class="server-status" id="summer-status">
+                            <span class="status-dot online"></span>
+                            <span>Онлайн</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="summer-link">Ссылка на сервер:</label>
+                        <input type="url" id="summer-link" placeholder="https://www.roblox.com/games/your-summer-server-id">
+                    </div>
+                    <div class="form-group">
+                        <label for="summer-status-select">Статус сервера:</label>
+                        <select id="summer-status-select" onchange="updateServerStatus('summer')">
+                            <option value="online">🟢 Онлайн</option>
+                            <option value="offline">🔴 Оффлайн</option>
+                            <option value="maintenance">🟡 Техработы</option>
+                            <option value="custom">✏️ Кастомный</option>
+                        </select>
+                    </div>
+                    <div class="form-group" id="summer-custom-status" style="display: none;">
+                        <label for="summer-custom-text">Кастомный статус:</label>
+                        <input type="text" id="summer-custom-text" placeholder="Введите свой статус" onchange="updateCustomStatus('summer')">
+                    </div>
+                    <div class="control-buttons">
+                        <button class="btn btn-update" onclick="updateServerLink('summer')">Обновить ссылку</button>
+                        <button class="btn btn-test" onclick="testServerLink('summer')">Тестировать</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-stats">
+                <h3>Статистика</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="winter-clicks">0</div>
+                        <div class="stat-label">Переходы на Winter</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="summer-clicks">0</div>
+                        <div class="stat-label">Переходы на Summer</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="total-joins-admin">0</div>
+                        <div class="stat-label">Всего переходов</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="last-update">Никогда</div>
+                        <div class="stat-label">Последнее обновление</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="admin-actions">
+                <h3>Дополнительные действия</h3>
+                <div class="actions-grid">
+                    <button class="btn btn-action" onclick="clearStats()">Очистить статистику</button>
+                    <button class="btn btn-action" onclick="exportData()">Экспорт данных</button>
+                    <button class="btn btn-action" onclick="resetLinks()">Сбросить ссылки</button>
+                    <button class="btn btn-action" onclick="openMainSite()">Открыть сайт</button>
+                </div>
+            </div>
+
+            <div class="social-management">
+                <h3>Управление Социальными Сетями</h3>
+                <div class="social-controls">
+                    <div class="social-control">
+                        <h4>💬 Discord</h4>
+                        <input type="url" id="discord-link" placeholder="https://discord.gg/your-server">
+                        <button class="btn btn-update" onclick="updateSocialLink('discord')">Обновить Discord</button>
+                    </div>
+                    <div class="social-control">
+                        <h4>📱 Telegram</h4>
+                        <input type="url" id="telegram-link" placeholder="https://t.me/your-channel">
+                        <button class="btn btn-update" onclick="updateSocialLink('telegram')">Обновить Telegram</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>

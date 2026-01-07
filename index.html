@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Hight Moon - Ты Запомнишь Меня</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&family=Russo+One&family=Comfortaa:wght@300;400;500;600;700&family=Nunito:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="stars"></div>
+    <div class="moon"></div>
+    
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">
+                <h1 class="logo-text">The Hight Moon</h1>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Главная</a>
+                <a href="#servers" class="nav-link">Серверы</a>
+                <a href="#about" class="nav-link">О игре</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="smoke-effects">
+                <div class="smoke smoke-1"></div>
+                <div class="smoke smoke-2"></div>
+                <div class="smoke smoke-3"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">The Hight Moon</h1>
+                <p class="hero-slogan">Ты Запомнишь Меня<br><span class="slogan-en">Yeah, You Remember Me</span></p>
+                <div class="hero-description">
+                    <p>Погрузись в захватывающий мир лунных приключений, где каждое решение имеет значение, а каждый момент наполнен адреналином</p>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" id="total-joins">0</div>
+                        <div class="stat-label">Всего переходов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2</div>
+                        <div class="stat-label">Активных сервера</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Работаем</div>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <button class="btn btn-primary" onclick="scrollToServers()">🎮 Выбрать Сервер</button>
+                    <button class="btn btn-secondary" onclick="openDiscord()">💬 Discord</button>
+                    <button class="btn btn-tertiary" onclick="openTelegram()">📱 Telegram</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="servers" class="servers">
+            <div class="container">
+                <h2 class="section-title">Выбери Свой Сервер</h2>
+                <div class="servers-grid">
+                    <div class="server-card winter-server">
+                        <div class="server-icon">❄️</div>
+                        <h3 class="server-name">The Winter</h3>
+                        <p class="server-description">Холодные земли полные тайн и приключений</p>
+                        <div class="server-status" id="main-winter-status">
+                            <span class="status-dot online"></span>
+                            Онлайн
+                        </div>
+                        <button class="btn btn-server" onclick="joinServer('winter')" id="winter-btn">
+                            Присоединиться
+                        </button>
+                    </div>
+                    
+                    <div class="server-card summer-server">
+                        <div class="server-icon">☀️</div>
+                        <h3 class="server-name">The Summer</h3>
+                        <p class="server-description">Жаркие пустыни с древними секретами</p>
+                        <div class="server-status" id="main-summer-status">
+                            <span class="status-dot online"></span>
+                            Онлайн
+                        </div>
+                        <button class="btn btn-server" onclick="joinServer('summer')" id="summer-btn">
+                            Присоединиться
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="news" class="news">
+            <div class="container">
+                <h2 class="section-title">Последние Новости</h2>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-date">15 Января 2025</div>
+                        <h3>Обновление Winter Server</h3>
+                        <p>Добавлены новые локации, улучшена система вейпинга и исправлены баги. Ждем вас в обновленном мире!</p>
+                        <div class="news-tag">Обновление</div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-date">10 Января 2025</div>
+                        <h3>Новый Summer Server</h3>
+                        <p>Запущен новый сервер с жаркими пустынями и древними секретами. Исследуй новые территории!</p>
+                        <div class="news-tag">Новое</div>
+                    </div>
+                    <div class="news-card">
+                        <div class="news-date">5 Января 2025</div>
+                        <h3>Discord Сообщество</h3>
+                        <p>Присоединяйся к нашему Discord серверу! Общайся с игроками, участвуй в ивентах и получай эксклюзивные награды.</p>
+                        <div class="news-tag">Сообщество</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">О Игре</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Погрузись в Мир The Hight Moon</h3>
+                        <p>Исследуй загадочные миры, сражайся с могущественными врагами и открывай древние тайны в этой захватывающей игре на Roblox. Расслабься с вейпом и наслаждайся атмосферой!</p>
+                        
+                        <div class="features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon">🌙</div>
+                                <h4>Лунный Мир</h4>
+                                <p>Уникальная атмосфера космического пространства</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">💨</div>
+                                <h4>Вейп Система</h4>
+                                <p>Расслабься и наслаждайся игровым процессом</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">⚔️</div>
+                                <h4>Эпические Битвы</h4>
+                                <p>Сражайся с врагами и побеждай в PvP</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="feature-icon">🏰</div>
+                                <h4>Два Мира</h4>
+                                <p>Winter и Summer серверы с уникальным контентом</p>
+                            </div>
+                        </div>
+                        
+                        <ul class="features-list">
+                            <li>🌙 Уникальная атмосфера лунного мира</li>
+                            <li>💨 Система вейпинга для расслабления <div class="vape-smoke"></div></li>
+                            <li>⚔️ Эпические сражения и квесты</li>
+                            <li>🏰 Два уникальных сервера с разными биомами</li>
+                            <li>👥 Многопользовательский геймплей</li>
+                            <li>🎮 Уникальная механика и стиль игры</li>
+                            <li>🔄 Регулярные обновления контента</li>
+                            <li>🎯 Система достижений и наград</li>
+                        </ul>
+                    </div>
+                    <div class="about-visual">
+                        <div class="game-preview">
+                            <div class="preview-screen"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 The Hight Moon. Все права защищены.</p>
+            <p>Создано Dexcos и Kitekun23 Для платформы Roblox</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
